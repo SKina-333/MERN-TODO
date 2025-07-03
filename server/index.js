@@ -1,14 +1,21 @@
 const express = require('express');
-const mongoose = require('mongoose');
+const connectDB = require('./configs/db');
+const taskRoutes = require('./routes/taskRoutes');
 const cors = require('cors');
 require('@dotenvx/dotenvx').config()
 
 const app = express();
 const port = process.env.SERVER_PORT;
 const env = process.env.ENVIRONMENT;
+connectDB();
+
 
 // Middleware
-app.use(cors());
+const corsOption = {
+  origin: 'http://localhost:5173/',
+  optionsSuccessStatus: 200 
+}
+app.use(cors(corsOption));
 app.use(express.json());
 
 
@@ -19,3 +26,5 @@ app.listen(port, () => {
 app.get("/", (req, res) => {
   res.json({ message: "Hello from Express!" });
 });
+
+app.use('/api/tasks', taskRoutes);
