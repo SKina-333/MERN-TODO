@@ -1,9 +1,10 @@
 const Task = require('../models/Tasks');
+const Status = require('../models/Status');
 
 // GET all tasks
 exports.getTasks = async (req, res) => {
   try {
-    const tasks = await Task.find();
+    const tasks = await Task.find().populate('statusId', 'name');
     res.json(tasks);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -13,7 +14,7 @@ exports.getTasks = async (req, res) => {
 // GET single task by ID
 exports.getTask = async (req, res) => {
   try {
-    const task = await Task.findById(req.params.id);
+    const task = await Task.findById(req.params.id).populate('statusId', 'name');
     if (!task) return res.status(404).json({ message: 'Task not found' });
     res.json(task);
   } catch (err) {
@@ -24,8 +25,8 @@ exports.getTask = async (req, res) => {
 // CREATE new task
 exports.createTask = async (req, res) => {
   try {
-    const { title, description, status } = req.body;
-    const task = new Task({ title, description, status });
+    const { title, description, statusId } = req.body;
+    const task = new Task({ title, description, statusId });
     await task.save();
     res.status(201).json(task);
   } catch (err) {
@@ -54,3 +55,13 @@ exports.deleteTask = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+// Get tasks by status
+exports.statusTasks = async (req, res) => {
+  try {
+    const statusTasks = await Task.find({ statusId: req.params.id }).populate('statusId', 'name');
+    res.json(statusTasks);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}

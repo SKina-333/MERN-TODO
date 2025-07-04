@@ -1,13 +1,15 @@
-import { useState } from 'react'
 import './App.css'
+import MainComponent from './components/MainComponent'
+import Navbar from './components/navbar'
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
-    <>
-      <div className='text-3xl'>HELLO WORLD</div>
-    </>
+    <div className='lg:p-[20px] flex flex-col gap-20 h-screen items-center'>
+      <Navbar/>
+      <MainComponent/>
+    </div>
   )
 }
 

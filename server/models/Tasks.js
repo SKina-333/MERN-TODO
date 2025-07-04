@@ -10,11 +10,7 @@ const TaskSchema = new mongoose.Schema(
     description: {
       type: String,
     },
-    status: {
-      type: String,
-      enum: ['To Do', 'Doing', 'Done'],
-      default: 'To Do',
-    },
+    statusId: { type: mongoose.Schema.Types.ObjectId, ref: 'Status', required: true },
   },
   { timestamps: true } 
 );

@@ -1,6 +1,7 @@
 const express = require('express');
 const connectDB = require('./configs/db');
 const taskRoutes = require('./routes/taskRoutes');
+const statusRoutes = require('./routes/statusRoutes');
 const cors = require('cors');
 require('@dotenvx/dotenvx').config()
 
@@ -28,3 +29,4 @@ app.get("/", (req, res) => {
 });
 
 app.use('/api/tasks', taskRoutes);
+app.use('/api/status', statusRoutes);
