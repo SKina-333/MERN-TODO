@@ -60,7 +60,9 @@ exports.deleteTask = async (req, res) => {
 exports.statusTasks = async (req, res) => {
   try {
     const statusTasks = await Task.find({ statusId: req.params.id }).populate('statusId', 'name');
-    res.json(statusTasks);
+    const count = await Task.countDocuments({ statusId: req.params.id });
+
+    res.json({statusTasks,count});
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

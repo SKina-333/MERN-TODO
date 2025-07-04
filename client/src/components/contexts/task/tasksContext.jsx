@@ -3,8 +3,8 @@ import { createContext, useEffect, useState } from "react";
 const TaskContext = createContext();
 
 export const TasksProvider = ({ children }) => {
-  const [status, setStatus] = useState([]);
-  const [tasksByStatus, setTasksByStatus] = useState({});
+  const [status, setStatus] = useState();
+  const [tasksByStatus, setTasksByStatus] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -21,10 +21,14 @@ export const TasksProvider = ({ children }) => {
       for (const s of statusData) {
         const taskRes = await fetch(`${API_URL}/tasks/status/${s._id}`);
         if (!taskRes.ok) throw new Error(`Failed to fetch tasks for ${s.name}`);
-        const tasks = await taskRes.json();
-        tasksByStatusTemp[s._id] = tasks;
+        const { statusTasks, count } = await taskRes.json();
+        tasksByStatusTemp[s._id] = {
+          statusName: s.name, 
+          statusTasks,
+          count,
+        };
       }
-
+      console.log(tasksByStatusTemp);
       setTasksByStatus(tasksByStatusTemp);
     } catch (err) {
       setError(err.message);
@@ -50,7 +54,8 @@ export const TasksProvider = ({ children }) => {
 
   const getTaskById = (taskId) => safeFetch(`${API_URL}/tasks/${taskId}`);
 
-  const getTasksByStatus = (statusId) => safeFetch(`${API_URL}/tasks/status/${statusId}`);
+  const getTasksByStatus = (statusId) =>
+    safeFetch(`${API_URL}/tasks/status/${statusId}`);
 
   const createTask = async (newTask) => {
     const savedTask = await safeFetch(`${API_URL}/tasks`, {
@@ -80,7 +85,8 @@ export const TasksProvider = ({ children }) => {
   //Status Functions
   const getAllStatus = () => safeFetch(`${API_URL}/status`);
 
-  const getStatusById = (statusId) => safeFetch(`${API_URL}/status/${statusId}`);
+  const getStatusById = (statusId) =>
+    safeFetch(`${API_URL}/status/${statusId}`);
 
   const createStatus = async (newStatus) => {
     const savedStatus = await safeFetch(`${API_URL}/status`, {
