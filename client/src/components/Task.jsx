@@ -10,11 +10,12 @@ const Priority = [
 ];
 
 export default function Task({ task, name }) {
-  const { updateTask, getTaskById, status } = useTasksContext();
+  const { updateTask, getTaskById, status,deleteTask } = useTasksContext();
 
   const [modal, toggleModal] = useToggle(false);
   const [optionStatus, toggleStatus] = useToggle(false);
   const [optionPriority, togglePriority] = useToggle(false);
+  const [del, toggleDelete] = useToggle(false);
   const [input, setInput] = useState({});
   const [field, setField] = useState();
 
@@ -54,14 +55,22 @@ export default function Task({ task, name }) {
             onClick={(e) => {
               e.stopPropagation();
             }}
-            className={cn("bg-white w-[800px] h-[630px] rounded-[10px] p-10 flex flex-col gap-10 border-2 border-b-4",task.priority === "low" ? "border-green-400" : "",
-          task.priority === "medium" ? "border-yellow-400" : "",
-          task.priority === "high" ? "border-red-500" : "")}
+            className={cn(
+              "bg-white w-[800px] h-[630px] rounded-[10px] p-10 flex flex-col gap-10 border-2 border-b-4",
+              task.priority === "low" ? "border-green-400" : "",
+              task.priority === "medium" ? "border-yellow-400" : "",
+              task.priority === "high" ? "border-red-500" : ""
+            )}
           >
             <div className="flex flex-row justify-between items-center">
               <p className="font-semibold text-[25px]">Task details</p>
               <div className="flex flex-row gap-3 items-center">
-                <div className="cursor-pointer">
+                <div
+                  onClick={() => {
+                    toggleDelete();
+                  }}
+                  className="cursor-pointer relative"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -76,10 +85,27 @@ export default function Task({ task, name }) {
                       d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
                     />
                   </svg>
+                  {del && (
+                    <div
+                      onClick={async (e) => {
+                        e.stopPropagation();
+                        const confirmDelete = window.confirm(
+                          "Are you sure you want to delete this task?"
+                        );
+                        if (confirmDelete) {
+                          await deleteTask(task._id);
+                        }
+                      }}
+                      className="absolute top-full right-0 py-2 px-4 w-[100px] text-red-500 rounded-[5px] shadow-sm border border-gray-200 "
+                    >
+                      Delete
+                    </div>
+                  )}
                 </div>
                 <div
                   onClick={() => {
                     toggleModal();
+                    toggleDelete(false)
                   }}
                   className="hover:bg-gray-100 cursor-pointer transition-colors  rounded-full p-1"
                 >

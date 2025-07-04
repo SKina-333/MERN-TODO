@@ -10,6 +10,7 @@ export default function MainComponent() {
           ([statusId, { statusName, statusTasks, count }]) => (
             <Column
               key={statusId}
+              id={statusId}
               name={statusName}
               tasks={statusTasks}
               count={count}
