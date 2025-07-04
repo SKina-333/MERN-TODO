@@ -13,7 +13,7 @@ connectDB();
 
 // Middleware
 const corsOption = {
-  origin: 'http://localhost:5173/',
+  origin: 'http://localhost:5173',
   optionsSuccessStatus: 200 
 }
 app.use(cors(corsOption));

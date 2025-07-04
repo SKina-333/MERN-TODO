@@ -2,11 +2,11 @@ import Column from "./Column";
 import useTasksContext from "./contexts/task/useTasksContext";
 
 export default function MainComponent() {
-  const { tasks, states, addTask, deleteTask, updateTask } = useTasksContext();
+  const { status} = useTasksContext();
   return (
     <div className=" flex flex-row grow w-auto max-w-full overflow-x-auto p-8">
-      {states &&
-        states.map((state, index) => <Column key={index} state={state} />)}
+      {status &&
+        status.map((status, index) => <Column key={index} status={status} />)}
       <div className="flex flex-row cursor-pointer rounded-xl items-center px-5 hover:bg-gray-100 transition-colors duration-500 ml-2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
