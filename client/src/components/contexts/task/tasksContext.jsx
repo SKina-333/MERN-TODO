@@ -28,7 +28,7 @@ export const TasksProvider = ({ children }) => {
           count,
         };
       }
-      console.log(tasksByStatusTemp);
+      console.log(tasksByStatusTemp)
       setTasksByStatus(tasksByStatusTemp);
     } catch (err) {
       setError(err.message);
@@ -124,6 +124,7 @@ export const TasksProvider = ({ children }) => {
         tasksByStatus,
         loading,
         error,
+        
         createTask,
         getTaskById,
         updateTask,

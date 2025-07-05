@@ -6,7 +6,7 @@ function App() {
 
 
   return (
-    <div className='lg:p-[20px] flex flex-col gap-20 h-screen items-center'>
+    <div className='lg:p-[20px] p-[25px] flex flex-col lg:gap-20 gap-5 h-dvh items-center'>
       <Navbar/>
       <MainComponent/>
     </div>

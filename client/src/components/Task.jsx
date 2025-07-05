@@ -10,7 +10,7 @@ const Priority = [
 ];
 
 export default function Task({ task, name }) {
-  const { updateTask, getTaskById, status,deleteTask } = useTasksContext();
+  const { updateTask, getTaskById, status, deleteTask } = useTasksContext();
 
   const [modal, toggleModal] = useToggle(false);
   const [optionStatus, toggleStatus] = useToggle(false);
@@ -36,7 +36,7 @@ export default function Task({ task, name }) {
           toggleModal();
         }}
         className={cn(
-          "break-words border-2 border-b-4 text-[15px] px-[20px] pt-[15px] pb-[20px] rounded-[10px] cursor-pointer",
+          "break-words border-2 border-b-4 text-[15px] px-[20px] pt-[15px] pb-[20px] rounded-[10px] cursor-pointer transition-all hover:shadow-md",
           task.priority === "low" ? "border-green-400" : "",
           task.priority === "medium" ? "border-yellow-400" : "",
           task.priority === "high" ? "border-red-500" : ""
@@ -56,14 +56,14 @@ export default function Task({ task, name }) {
               e.stopPropagation();
             }}
             className={cn(
-              "bg-white w-[800px] h-[630px] rounded-[10px] p-10 flex flex-col gap-10 border-2 border-b-4",
+              "bg-white lg:w-[800px]  lg:h-[630px] w-96 rounded-[10px] lg:p-10 p-5 flex flex-col gap-10 border-2 border-b-4",
               task.priority === "low" ? "border-green-400" : "",
               task.priority === "medium" ? "border-yellow-400" : "",
               task.priority === "high" ? "border-red-500" : ""
             )}
           >
             <div className="flex flex-row justify-between items-center">
-              <p className="font-semibold text-[25px]">Task details</p>
+              <p className="font-semibold lg:text-[25px] text-[20px]">Task details</p>
               <div className="flex flex-row gap-3 items-center">
                 <div
                   onClick={() => {
@@ -105,7 +105,7 @@ export default function Task({ task, name }) {
                 <div
                   onClick={() => {
                     toggleModal();
-                    toggleDelete(false)
+                    toggleDelete(false);
                   }}
                   className="hover:bg-gray-100 cursor-pointer transition-colors  rounded-full p-1"
                 >
@@ -186,9 +186,17 @@ export default function Task({ task, name }) {
                   onClick={() => {
                     togglePriority();
                   }}
-                  className="relative col-span-4 py-[10px] rounded-[4px] px-[6px] border-[1.5px] border-transparent hover:border-gray-200 cursor-pointer"
+                  className="relative col-span-4 py-[10px] rounded-[4px] px-[6px] border-[1.5px] border-transparent hover:border-gray-200 cursor-pointer flex flex-row items-center gap-5"
                 >
-                  {task.priority}
+                  {task.priority}{" "}
+                  <span
+                    className={cn(
+                      "w-[20px] h-[20px] rounded-full",
+                      task.priority === "low" ? "bg-green-400" : "",
+                      task.priority === "medium" ? "bg-yellow-400" : "",
+                      task.priority === "high" ? "bg-red-500" : ""
+                    )}
+                  ></span>
                   {optionPriority && (
                     <div
                       onClick={(e) => {
@@ -207,9 +215,17 @@ export default function Task({ task, name }) {
                             });
                             togglePriority();
                           }}
-                          className="px-5 py-3 border border-transparent hover:border-gray-100 hover:bg-gray-100 rounded-[5px] text-sm cursor-pointer"
+                          className="px-5 py-3 border border-transparent hover:border-gray-100 hover:bg-gray-100 rounded-[5px] text-sm cursor-pointer flex flex-row items-center justify-between"
                         >
                           {prio.label}
+                          <span
+                            className={cn(
+                              "w-[20px] h-[20px] rounded-full",
+                              prio.value === "low" ? "bg-green-400" : "",
+                              prio.value === "medium" ? "bg-yellow-400" : "",
+                              prio.value === "high" ? "bg-red-500" : ""
+                            )}
+                          ></span>
                         </div>
                       ))}
                     </div>
@@ -245,7 +261,7 @@ export default function Task({ task, name }) {
                   setField("description");
                 }}
                 onBlur={handleInputBlur}
-                className="grow border border-gray-200 rounded-[3px] p-5 whitespace-pre-line cursor-pointer resize-none overflow-hidden h-auto"
+                className="grow border border-gray-200 rounded-[3px] p-5 whitespace-pre-line cursor-pointer resize-none overflow-y-auto h-auto"
                 rows={3}
               />
             </div>
