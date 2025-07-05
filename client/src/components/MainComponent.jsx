@@ -1,17 +1,19 @@
 import { useToggle } from "@uidotdev/usehooks";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Column from "./Column";
 import useTasksContext from "./contexts/task/useTasksContext";
 
 export default function MainComponent() {
-  const { tasksByStatus, createStatus, deleteStatus } = useTasksContext();
-
+  const { tasksByStatus, createStatus, deleteStatus, updateStatus } =
+    useTasksContext();
+  const selectedRef = useRef(0);
   const [selectedColumn, setSelectedColumn] = useState(0);
   const [statusOptions, toggleStatus] = useToggle(false);
   const [selectedID, setSelectedID] = useState();
 
   const [statusName, setStatusName] = useState("");
   const [newColumn, toggleColumn] = useToggle(false);
+  const [updateColumn, toggleUpdate] = useToggle(false);
 
   const handleBlur = async () => {
     if (statusName.trim() !== "") {
@@ -23,7 +25,7 @@ export default function MainComponent() {
 
   useEffect(() => {
     if (tasksByStatus) {
-      setSelectedID(Object.keys(tasksByStatus)[0]);
+      setSelectedID(Object.keys(tasksByStatus)[selectedRef.current]);
     }
   }, [tasksByStatus]);
 
@@ -34,26 +36,84 @@ export default function MainComponent() {
         {tasksByStatus && Object.entries(tasksByStatus).length != 0 && (
           <div className="relative">
             <div className="flex flex-row justify-between items-center">
-              <div className="p-2 border border-gray-300 shadow-sm rounded-[10px]">
+              <div className="flex flex-row items-center gap-5">
+                <div className="p-2 border border-gray-300 shadow-sm rounded-[10px]">
+                  <div
+                    onClick={() => {
+                      toggleStatus();
+                    }}
+                    className="flex flex-row gap-3"
+                  >
+                    <p>
+                      {!newColumn
+                        ? Object.entries(tasksByStatus)[selectedRef.current][1]
+                            .statusName
+                        : "Create Column"}
+                    </p>
+                    <p>|</p>
+                    <p className="text-gray-400">
+                      {!newColumn
+                        ? Object.entries(tasksByStatus)[selectedRef.current][1].count
+                        : "0"}
+                    </p>
+                  </div>
+                </div>
                 <div
                   onClick={() => {
-                    toggleStatus();
+                    toggleUpdate();
                   }}
-                  className="flex flex-row gap-3"
+                  className="border border-gray-200  rounded-[10px] shadow-sm"
                 >
-                  <p>
-                    {
-                      !newColumn ?
-                      Object.entries(tasksByStatus)[selectedColumn][1]
-                        .statusName : "Create Column"
-                    }
-                  </p>
-                  <p>|</p>
-                  <p className="text-gray-400">
-                    {!newColumn ? Object.entries(tasksByStatus)[selectedColumn][1].count : "0"}
-                  </p>
+                  {!updateColumn ? (
+                    <div className="p-3">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="size-4"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
+                        />
+                      </svg>
+                    </div>
+                  ) : (
+                    <div
+                      onClick={(e) => {
+                        e.stopPropagation();
+                      }}
+                      className="p-2"
+                    >
+                      <input
+                        type="text"
+                        onBlur={async () => {
+                          if (
+                            Object.entries(tasksByStatus)[selectedRef.current][1]
+                              .statusName !== statusName
+                          ) {
+                            await updateStatus(selectedID, {
+                              name: statusName,
+                            });
+                          }
+                          toggleUpdate(false);
+                          setStatusName("");
+                          setSelectedColumn();
+                        }}
+                        value={statusName}
+                        onChange={(e) => {
+                          setStatusName(e.target.value);
+                        }}
+                        className="w-[120px] "
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
+
               <div
                 onClick={async (e) => {
                   e.stopPropagation();
@@ -62,7 +122,7 @@ export default function MainComponent() {
                   );
                   if (confirmDelete) {
                     await deleteStatus(selectedID);
-                    setSelectedColumn(0);
+                    selectedRef.current = 0
                   }
                 }}
                 className="p-2 border border-gray-200 rounded-[5px] shadow-sm"
@@ -92,10 +152,10 @@ export default function MainComponent() {
                       className=" p-1"
                       key={statusId}
                       onClick={() => {
-                        setSelectedColumn(i);
+                        selectedRef.current = i
                         setSelectedID(statusId);
                         toggleStatus(false);
-                        toggleColumn(false)
+                        toggleColumn(false);
                       }}
                     >
                       {statusName}
@@ -118,7 +178,9 @@ export default function MainComponent() {
 
         <div className="grow flex flex-col h-min max-h-full overflow-y-scroll ">
           {newColumn ? (
-            <Column create={true} selectColumn={setSelectedColumn} selectID={selectedID}/>
+            <Column
+              create={true}
+            />
           ) : selectedID && tasksByStatus[selectedID] ? (
             <Column
               create={false}
@@ -135,18 +197,19 @@ export default function MainComponent() {
       </div>
       {/* Desktop View */}
       <div className=" p-8 hidden lg:flex flex-row grow w-auto max-w-full overflow-x-auto">
-        {tasksByStatus && Object.entries(tasksByStatus).length != 0 ? 
-          Object.entries(tasksByStatus).map(
-            ([statusId, { statusName, statusTasks, count }]) => (
-              <Column
-                key={statusId}
-                id={statusId}
-                name={statusName}
-                tasks={statusTasks}
-                count={count}
-              />
+        {tasksByStatus && Object.entries(tasksByStatus).length != 0
+          ? Object.entries(tasksByStatus).map(
+              ([statusId, { statusName, statusTasks, count }]) => (
+                <Column
+                  key={statusId}
+                  id={statusId}
+                  name={statusName}
+                  tasks={statusTasks}
+                  count={count}
+                />
+              )
             )
-          ) : ''}
+          : ""}
         {!newColumn ? (
           <div
             onClick={() => {

@@ -2,7 +2,7 @@ import { useToggle } from "@uidotdev/usehooks";
 import Task from "./task";
 import useTasksContext from "./contexts/task/useTasksContext";
 import { useState } from "react";
-export default function Column({ name, tasks, count, id, create, selectedColumn, selectedId }) {
+export default function Column({ name, tasks, count, id, create}) {
   const { createTask, updateStatus, deleteStatus, createStatus } = useTasksContext();
   const [title, setTitle] = useState("");
   const [status, setStatus] = useState(name);
@@ -34,8 +34,8 @@ export default function Column({ name, tasks, count, id, create, selectedColumn,
               <input
                 type="text"
                 onBlur={async () => {
-                  if (name !== status) {
-                    await updateStatus({ id, name: status });
+                  if (name !== status && id) {
+                    await updateStatus(id ,{ name: status });
                   }
                 }}
                 style={{ width: `${name.length + 1}ch` }}
