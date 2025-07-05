@@ -4,4 +4,4 @@
 # Environment variables
 .env
 .env.* 
-/generated/prisma
+
