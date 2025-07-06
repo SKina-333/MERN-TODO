@@ -86,3 +86,5 @@ https://github.com/user-attachments/assets/8fb8977a-77c0-4c2d-bdf5-d26b5cbe33dd
 https://github.com/user-attachments/assets/9e4b06ea-0201-4066-b08e-b3a752bbb468
 - Delete task & column <br/>
 https://github.com/user-attachments/assets/d6ac6730-63d0-4a4b-b0d0-1917412c2643
+- Adding task description <br/>
+https://github.com/user-attachments/assets/4965bfe7-1137-4233-b56b-5262209cccf0
