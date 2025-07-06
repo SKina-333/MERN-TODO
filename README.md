@@ -60,9 +60,10 @@ npm run dev
 - I also ran into some problems while designing the website to be Mobile and Desktop responsive. Since my application design for desktop differs from the design for mobile, I had to create two separate code for each of them which causes a few complication trying to figure out how to still reuse the same code without making the code larger and messy with a lot of conditional switches.
 
 ## Bonus feature
-Besides the bonus challenge of creating a toggleable list style view, I added 2 extra features to the website:
+Besides the bonus challenge of creating a toggleable list style view, I added 3 extra features to the website:
 - Added a priority tag (low, medium, high) that user can apply it on their task which changes the color of the task depending on the urgency of the priority.
 - The application operates in a single page. User can create, read, update and delete all in the same page seamlessly.
+- Added description section for user to write additional details for the task.
 
 ## Future Improvements
 The website is far from being perfect. While I mainly focus on the main objective of the mission, I think it is nice to include this section as a retrospective for myself to think back on how to improve the code as well as my design decision so I can improve myself. Future improvements includes:
@@ -71,6 +72,7 @@ The website is far from being perfect. While I mainly focus on the main objectiv
 - Better Error handling and not crash the application
 - Add more viewport
 - Dockerize this project for better sharing and hosting
+- Add a rich text editor for task description to store better description.
 
 ## Video demonstration clips 
 
