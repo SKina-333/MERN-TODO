@@ -73,6 +73,7 @@ The website is far from being perfect. While I mainly focus on the main objectiv
 - Add more viewport
 - Dockerize this project for better sharing and hosting
 - Add a rich text editor for task description to store better description.
+- Add different layout style such as list style
 
 ## Video demonstration clips 
 
