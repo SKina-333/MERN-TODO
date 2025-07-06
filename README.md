@@ -71,3 +71,8 @@ The website is far from being perfect. While I mainly focus on the main objectiv
 - Better Error handling and not crash the application
 - Add more viewport
 - Dockerize this project for better sharing and hosting
+
+## Screenshots
+
+- Add tasks
+https://github.com/user-attachments/assets/c27b8396-c000-4ad0-8e18-05845a899ace
