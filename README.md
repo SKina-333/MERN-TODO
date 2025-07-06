@@ -1,6 +1,6 @@
 # MERN STACK TODO APP
 
-A full-stack Kanban-style to do list app built with built with:
+A full-stack Kanban-style to do list app built with:
 - MongoDB
 - Express
 - React
