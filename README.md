@@ -72,7 +72,17 @@ The website is far from being perfect. While I mainly focus on the main objectiv
 - Add more viewport
 - Dockerize this project for better sharing and hosting
 
-## Screenshots
+## Video demonstration clips 
 
-- Add tasks
+- Add tasks <br/>
 https://github.com/user-attachments/assets/c27b8396-c000-4ad0-8e18-05845a899ace
+- Read tasks <br/>
+https://github.com/user-attachments/assets/4bd56fe9-aba3-40af-9235-5cb11831fba3
+- Update task & column <br/>
+https://github.com/user-attachments/assets/4c306b29-4de1-4af0-a4c9-8d1fda721773
+- Add columns <br/>
+https://github.com/user-attachments/assets/8fb8977a-77c0-4c2d-bdf5-d26b5cbe33dd
+- Change Priority <br/>
+https://github.com/user-attachments/assets/9e4b06ea-0201-4066-b08e-b3a752bbb468
+- Delete task & column <br/>
+https://github.com/user-attachments/assets/d6ac6730-63d0-4a4b-b0d0-1917412c2643
