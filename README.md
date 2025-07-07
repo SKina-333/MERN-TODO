@@ -78,13 +78,22 @@ The website is far from being perfect. While I mainly focus on the main objectiv
 ## Video demonstration clips 
 
 - Add tasks & column <br/>
+
 https://github.com/user-attachments/assets/3cbbd593-89d3-4e35-a97d-789105d7a141
+
 - Read tasks <br/>
+
 https://github.com/user-attachments/assets/c0ee2070-17d9-499d-ad8a-f1ae7d046b6a
+
 - Update task & column <br/>
-https://github.com/user-attachments/assets/a8eec757-8dde-48bf-8a0e-990f0b359eae
+
+https://github.com/user-attachments/assets/a8eec757-8dde-48bf-8a0e-990f0b359eae <br />
+
 https://github.com/user-attachments/assets/aa9243eb-5343-4625-bac6-c69416f12bd4
+
 - Delete task & column <br/>
+
 https://github.com/user-attachments/assets/48ac437e-6c17-42c6-ab7b-9b0478a06978
+
 
 
