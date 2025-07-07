@@ -77,17 +77,14 @@ The website is far from being perfect. While I mainly focus on the main objectiv
 
 ## Video demonstration clips 
 
-- Add tasks <br/>
-https://github.com/user-attachments/assets/c27b8396-c000-4ad0-8e18-05845a899ace
+- Add tasks & column <br/>
+https://github.com/user-attachments/assets/3cbbd593-89d3-4e35-a97d-789105d7a141
 - Read tasks <br/>
-https://github.com/user-attachments/assets/4bd56fe9-aba3-40af-9235-5cb11831fba3
+https://github.com/user-attachments/assets/c0ee2070-17d9-499d-ad8a-f1ae7d046b6a
 - Update task & column <br/>
-https://github.com/user-attachments/assets/4c306b29-4de1-4af0-a4c9-8d1fda721773
-- Add columns <br/>
-https://github.com/user-attachments/assets/8fb8977a-77c0-4c2d-bdf5-d26b5cbe33dd
-- Change Priority <br/>
-https://github.com/user-attachments/assets/9e4b06ea-0201-4066-b08e-b3a752bbb468
+https://github.com/user-attachments/assets/a8eec757-8dde-48bf-8a0e-990f0b359eae
+https://github.com/user-attachments/assets/aa9243eb-5343-4625-bac6-c69416f12bd4
 - Delete task & column <br/>
-https://github.com/user-attachments/assets/d6ac6730-63d0-4a4b-b0d0-1917412c2643
-- Adding task description <br/>
-https://github.com/user-attachments/assets/4965bfe7-1137-4233-b56b-5262209cccf0
+https://github.com/user-attachments/assets/48ac437e-6c17-42c6-ab7b-9b0478a06978
+
+
