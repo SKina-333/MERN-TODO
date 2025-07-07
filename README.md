@@ -79,8 +79,6 @@ The website is far from being perfect. While I mainly focus on the main objectiv
 
 - Add tasks <br/>
 https://github.com/user-attachments/assets/c27b8396-c000-4ad0-8e18-05845a899ace
-[iPhone-14-Plus-localhost-6bvheh98sgqwiv.webm](https://github.com/user-attachments/assets/e76f2ead-101e-4524-b232-ead689c2e83a)
-
 - Read tasks <br/>
 https://github.com/user-attachments/assets/4bd56fe9-aba3-40af-9235-5cb11831fba3
 - Update task & column <br/>
